@@ -1,0 +1,181 @@
+doctype html
+html(lang="en")
+head
+meta(charset="utf-8")
+title Spaced Soft - Api Test
+link(rel="icon", type="image/x-icon", href="/logomark.svg")
+meta(name="viewport", content="width=device-width, initial-scale=1.0")
+meta(name="description", content="")
+meta(name="author", content="")
+
+// Le styles
+link(href="bootstrap/css/bootstrap.min.css", rel="stylesheet")
+link(href="bootstrap/css/bootstrap-responsive.min.css", rel="stylesheet")
+link(href="debug.css", rel="stylesheet")
+
+.hidden
+
+  .httpfile
+    a.close &times;
+    .row.show-grid
+      .span2
+        .control-group
+          .controls
+            input.input-medium.fakeinputname(value="")
+      .span3
+        .control-group
+          .controls
+            input.input-file.realinputvalue(type="file", multiple)
+
+  .httpparameter
+    a.close &times;
+    .row.show-grid
+      .span2
+        .control-group
+          .controls
+            input.input-medium.fakeinputname(value="")
+      .span3
+        .control-group
+          .controls
+            input.input-xlarge.realinputvalue(value="")
+
+  .httpauth
+    a.close &times;
+    .row.show-grid
+      .span2
+        .control-group
+          .controls
+            input.input-medium.fakeinputname(value="")
+      .span3
+        .control-group
+          .controls
+            input.input-xlarge.realinputvalue(value="")
+
+.navbar.navbar-fixed-top.navbar-inverse
+  .navbar-inner
+    .container
+      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(style="align-items: center; display: flex;", href="#")
+        img(src="logomark.svg", alt="spacedsoft", style="width: 20px;")
+      .nav-collapse
+        ul.nav(style="text-align: center; display: flex;")
+          li
+            a(target="_blank", href="https://github.com/henrymartinsb/rest") Source code
+          li
+            a(target="_blank", href="https://github.com/henrymartinsb/rest/issues") Submit bug
+          li
+            a(target="_blank", href="https://github.com/henrymartinsb") Author
+
+.container
+
+  .row.show-grid
+    #leftcolumn.span6
+      form#paramform.well(target="outputframe")
+        fieldset
+          legend HTTP request options
+
+          br
+
+          .row.show-grid
+            .span1
+              .control-group
+                label.control-label(for="httpmethod") Method
+                div.controls
+                  select.input-small#httpmethod
+                    option GET
+                    option POST
+                    option OPTIONS
+                    option PUT
+                    option DELETE
+                    option HEAD
+            .span4
+              .control-group
+                label.control-label(for="urlvalue") Endpoint
+                div.controls
+                  input.input-xlarge#urlvalue(value="https://spacedsoft.com/api")
+
+          p.help-block Method and Endpoint are required. Click below to add additional parameters.
+
+          div.align-left
+            button#addauthbutton.btn.btn-primary(style="margin-bottom: 1.5em;")
+              i.icon-lock.icon-white
+              |  Add authentication
+
+          #authentication
+
+            .row.show-grid
+              .span2
+                .control-group
+                  label.control-label Username
+
+              .span3
+                .control-group
+                  label.control-label Password
+
+          #allheaders
+
+            .row.show-grid
+              .span2
+                .control-group
+                  label.control-label Header Name
+
+              .span3
+                .control-group
+                  label.control-label Header Value
+
+          div.align-left
+            button#addheaderbutton.btn.btn-primary
+              i.icon-plus.icon-white
+              |  Add header
+
+          br
+
+          #allparameters
+
+            .row.show-grid
+              .span2
+                .control-group
+                  label.control-label Parameter Name
+
+              .span3
+                .control-group
+                  label.control-label Parameter Value
+
+          div.align-left
+            button#addprambutton.btn.btn-primary
+              i.icon-plus.icon-white
+              |  Add parameter
+            button#addfilebutton.btn.btn-primary
+              i.icon-file.icon-white
+              |  Add file
+
+          div.align-right
+            button#submitajax.btn.btn-success.btn-large
+              i.icon-download-alt.icon-white
+              |  Ajax request
+            img#ajaxspinner(src="spinner.gif")
+
+      #errordiv
+
+      .alert.alert-info
+        a.close(data-dismiss="alert") &times;
+        strong Welcome!
+        |  Use this simple page to poke around at the API.
+        |  Specify HTTP method, URL and parameters, and click on 
+        b Ajax Request.
+        |  Note that this page requires a browser with HTML5 support.
+
+    .span6
+      #ajaxoutput
+        pre#statuspre
+        pre.pre-scrollable.prettyprint.linenums#outputpre
+        pre.pre-scrollable.prettyprint.linenums#headerpre
+
+  br
+
+script(src="jquery-1.10.2.min.js")
+script(src="bootstrap/js/bootstrap.min.js")
+script(src="debug.js")
